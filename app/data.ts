@@ -5,7 +5,7 @@ export const openingDialog: OpeningDialog = {
   subtitle: 'Для найніжнішої людини в моїй історії',
   message: 'Нехай цей день буде теплим, красивим і дуже твоїм. Я підготував маленьку новелу про нас, а ці тюльпани відкривають першу сторінку.',
   music: 'blue',
-  image: '/images/birthday-tulips.png',
+  image: 'images/birthday-tulips.png',
   cta: 'Почати історію'
 }
 
@@ -52,7 +52,7 @@ export const backgrounds: Background[] = [
     id: 'balcony',
     label: 'Вечірній балкон',
     kind: 'image',
-    value: '/images/birthday-balcony.png'
+    value: 'images/birthday-balcony.png'
   },
   {
     id: 'starlight',

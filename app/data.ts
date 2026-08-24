@@ -77,13 +77,13 @@ export const backgrounds: Background[] = [
 export const characterDefinitions: Record<CharacterId, CharacterDefinition> = {
   maria: {
     name: 'Марійка',
-    faceImg: '/images/maria.jpg',
+    faceImg: 'images/maria.jpg',
     hairClass: 'bg-gradient-to-br from-amber-900 via-rose-900 to-slate-950',
     bodyClass: 'bg-gradient-to-b from-rose-300 via-fuchsia-400 to-rose-900'
   },
   serhii: {
     name: 'Сергійко',
-    faceImg: '/images/serhii.jpg',
+    faceImg: 'images/serhii.jpg',
     hairClass: 'bg-gradient-to-br from-slate-900 via-slate-800 to-zinc-950',
     bodyClass: 'bg-gradient-to-b from-teal-300 via-cyan-600 to-slate-900'
   }

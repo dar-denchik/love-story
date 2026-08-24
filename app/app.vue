@@ -1,9 +1,9 @@
 <template>
-  <div class="min-h-screen bg-slate-950 text-white">
+  <div class="min-h-90 bg-slate-950 text-white">
     <NuxtRouteAnnouncer />
 
     <main
-      class="relative min-h-100svh cursor-pointer overflow-hidden select-none"
+      class="relative min-h-90 cursor-pointer overflow-hidden select-none"
       role="button"
       tabindex="0"
       aria-label="Продовжити історію"

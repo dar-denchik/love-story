@@ -22,7 +22,7 @@ export const musicTracks: MusicTrack[] = [
     label: 'Ending',
     src: 'ending.mp3',
     volume: 0.70,
-    start: 1
+    start: 0
   },
   {
     id: 'in-love',
@@ -36,7 +36,7 @@ export const musicTracks: MusicTrack[] = [
     label: 'Lirika',
     src: 'lirika.mp3',
     volume: 0.70,
-    start: 2
+    start: 1
   },
   {
     id: 'white-roses',
@@ -44,6 +44,20 @@ export const musicTracks: MusicTrack[] = [
     src: 'white-roses.mp3',
     volume: 0.70,
     start: 0
+  },
+  {
+    id: 'goodbye',
+    label: 'Goodbye',
+    src: 'goodbye.mp3',
+    volume: 0.70,
+    start: 0.5
+  },
+  {
+    id: 'start',
+    label: 'Start',
+    src: 'start.mp3',
+    volume: 0.70,
+    start: 0.5
   }
 ]
 
@@ -61,16 +75,34 @@ export const backgrounds: Background[] = [
     value: 'radial-gradient(circle at 18% 22%, rgba(20,184,166,.55), transparent 28%), radial-gradient(circle at 76% 18%, rgba(244,114,182,.42), transparent 30%), linear-gradient(135deg, #111827 0%, #312e81 44%, #0f172a 100%)'
   },
   {
-    id: 'morning',
-    label: 'Теплий ранок',
-    kind: 'gradient',
-    value: 'radial-gradient(circle at 28% 26%, rgba(253,186,116,.72), transparent 32%), radial-gradient(circle at 78% 72%, rgba(45,212,191,.42), transparent 30%), linear-gradient(135deg, #7c2d12 0%, #be123c 46%, #164e63 100%)'
+    id: 'first-together',
+    label: 'First Together',
+    kind: 'image',
+    value: 'images/first-together.jpg'
   },
   {
-    id: 'paper',
-    label: 'Лист кохання',
-    kind: 'gradient',
-    value: 'linear-gradient(120deg, rgba(15,23,42,.88), rgba(136,19,55,.68)), repeating-linear-gradient(0deg, rgba(255,255,255,.12) 0 1px, transparent 1px 34px)'
+    id: 'bus-station',
+    label: 'Bus Station',
+    kind: 'image',
+    value: 'images/vokzal.jpg'
+  },
+  {
+    id: 'first-end',
+    label: 'First End',
+    kind: 'image',
+    value: 'images/first-end.jpg'
+  },
+  {
+    id: 'lock',
+    label: 'Lock',
+    kind: 'image',
+    value: 'images/lock.jpg'
+  },
+  {
+    id: 'sushi',
+    label: 'Sushi',
+    kind: 'image',
+    value: 'images/sushi.jpg'
   }
 ]
 
@@ -91,14 +123,14 @@ export const characterDefinitions: Record<CharacterId, CharacterDefinition> = {
 
 export const storyScenes: StoryScene[] = [
   {
-    id: 'birthday',
-    title: '',
-    place: 'Початок нашої історії',
+    id: 'ordinary-night',
+    title: 'Звичайна ніч',
+    place: '28 лютого — 1 березня',
     background: backgrounds[0],
-    music: 'memory-warm',
+    music: 'start',
     characters: [
-      { id: 'maria', position: 'left', animation: 'pulse' },
-      { id: 'serhii', position: 'right', animation: 'breathe' }
+      { id: 'maria', position: 'left', animation: 'float' },
+      { id: 'serhii', position: 'right', animation: 'sway' }
     ],
     lines: [
       {
@@ -111,21 +143,7 @@ export const storyScenes: StoryScene[] = [
       {
         speaker: 'Марія',
         text: 'А я тоді навіть не думала, що випадковий чат може привести мене до людини, яка стане настільки важливою.'
-      }
-    ]
-  },
-
-  {
-    id: 'ordinary-night',
-    title: 'Звичайна ніч',
-    place: '28 лютого — 1 березня',
-    background: backgrounds[1],
-    music: null,
-    characters: [
-      { id: 'maria', position: 'left', animation: 'float' },
-      { id: 'serhii', position: 'right', animation: 'sway' }
-    ],
-    lines: [
+      },
       {
         text: 'Це була сама звичайнісінька ніч. Сергійко і Марійка просто хотіли трохи поспілкуватися з випадковими людьми в Nektome, посміятися, можливо, познайомитися з кимось цікавим — і розійтися спати.'
       },
@@ -142,21 +160,7 @@ export const storyScenes: StoryScene[] = [
       {
         speaker: 'Марія',
         text: 'Мабуть, іноді найважливіші речі в житті починаються саме тоді, коли ми нічого особливого від цього дня не очікуємо.'
-      }
-    ]
-  },
-
-  {
-    id: 'first-feelings',
-    title: 'Почуття без попередження',
-    place: 'Перші розмови',
-    background: backgrounds[2],
-    music: null,
-    characters: [
-      { id: 'maria', position: 'right', animation: 'breathe' },
-      { id: 'serhii', position: 'left', animation: 'pulse' }
-    ],
-    lines: [
+      },
       {
         text: 'Їхнє спілкування швидко перестало бути просто випадковою розмовою. Голос Марійки, її фотографії, її характер — усе це поступово зачепило Сергійка набагато сильніше, ніж він очікував.'
       },
@@ -177,16 +181,15 @@ export const storyScenes: StoryScene[] = [
       }
     ]
   },
-
   {
     id: 'distance',
     title: 'Між довірою та страхом',
     place: 'Перші випробування',
-    background: backgrounds[3],
-    music: 'memory-warm',
+    background: backgrounds[1],
+    music: null,
     characters: [
-      { id: 'maria', position: 'left', animation: 'sway' },
-      { id: 'serhii', position: 'right', animation: 'breathe' }
+      { id: 'maria', position: 'left', animation: 'pulse' },
+      { id: 'serhii', position: 'right', animation: 'pulse' }
     ],
     lines: [
       {
@@ -207,21 +210,7 @@ export const storyScenes: StoryScene[] = [
       },
       {
         text: 'А Марійка саме тоді, навпаки, стала ніжнішою й теплішою. Наче боялася втратити те, що тільки починало ставати для неї важливим.'
-      }
-    ]
-  },
-
-  {
-    id: 'decision',
-    title: 'Я залишаюся',
-    place: 'Рішення не здаватися',
-    background: backgrounds[4],
-    music: 'memory-warm',
-    characters: [
-      { id: 'maria', position: 'left', animation: 'pulse' },
-      { id: 'serhii', position: 'right', animation: 'pulse' }
-    ],
-    lines: [
+      },
       {
         text: 'Минув час. Сергійко багато думав про них, про Марійку, про її страхи й про власні сумніви.'
       },
@@ -243,14 +232,14 @@ export const storyScenes: StoryScene[] = [
   },
 
   {
-    id: 'closer',
-    title: 'Стаємо ближчими',
-    place: 'Дні, які зближували',
-    background: backgrounds[5],
+    id: 'first-meeting-plan',
+    title: 'А якщо зустрітися?',
+    place: 'Перші плани',
+    background: backgrounds[1],
     music: null,
     characters: [
-      { id: 'maria', position: 'right', animation: 'float' },
-      { id: 'serhii', position: 'left', animation: 'breathe' }
+      { id: 'maria', position: 'left', animation: 'sway' },
+      { id: 'serhii', position: 'right', animation: 'float' }
     ],
     lines: [
       {
@@ -265,21 +254,7 @@ export const storyScenes: StoryScene[] = [
       },
       {
         text: 'Вони закохувалися все сильніше. І поступово екран телефону перестав бути просто екраном — за ним була людина, яку хотілося побачити наживо.'
-      }
-    ]
-  },
-
-  {
-    id: 'first-meeting-plan',
-    title: 'А якщо зустрітися?',
-    place: 'Перші плани',
-    background: backgrounds[6],
-    music: null,
-    characters: [
-      { id: 'maria', position: 'left', animation: 'sway' },
-      { id: 'serhii', position: 'right', animation: 'float' }
-    ],
-    lines: [
+      },
       {
         text: 'Сергійко був неймовірно настирним. Йому хотілося зустрітися якомога швидше.'
       },
@@ -301,14 +276,14 @@ export const storyScenes: StoryScene[] = [
   },
 
   {
-    id: 'countdown',
-    title: 'До зустрічі залишилось...',
-    place: 'Серпень',
-    background: backgrounds[7],
-    music: 'memory-warm',
+    id: 'journey',
+    title: 'Дорога до тебе',
+    place: 'Нічний автобус',
+    background: backgrounds[1],
+    music: 'white-roses',
     characters: [
-      { id: 'maria', position: 'left', animation: 'pulse' },
-      { id: 'serhii', position: 'right', animation: 'pulse' }
+      { id: 'maria', position: 'right', animation: 'breathe' },
+      { id: 'serhii', position: 'left', animation: 'sway' }
     ],
     lines: [
       {
@@ -319,21 +294,7 @@ export const storyScenes: StoryScene[] = [
       },
       {
         text: 'Вони відкривали календар майже щодня. Дивилися на цифри й рахували, скільки ще залишилося до моменту, коли між ними нарешті не буде кілометрів.'
-      }
-    ]
-  },
-
-  {
-    id: 'journey',
-    title: 'Дорога до тебе',
-    place: 'Нічний автобус',
-    background: backgrounds[8],
-    music: 'white-roses',
-    characters: [
-      { id: 'maria', position: 'right', animation: 'breathe' },
-      { id: 'serhii', position: 'left', animation: 'sway' }
-    ],
-    lines: [
+      },
       {
         text: 'І ось настав той день. Уночі Сергійко виїхав зі свого міста й вирушив до Марійки.'
       },
@@ -365,7 +326,7 @@ export const storyScenes: StoryScene[] = [
     id: 'first-sight',
     title: 'Стоп... Я тебе бачу',
     place: 'Автовокзал',
-    background: backgrounds[9],
+    background: backgrounds[3],
     music: null,
     characters: [
       { id: 'maria', position: 'left', animation: 'pulse' },
@@ -397,17 +358,6 @@ export const storyScenes: StoryScene[] = [
       {
         text: 'Вони нарешті були поруч.'
       },
-      {
-        text: 'Перші теплі обійми. Перші ніжні поцілунки. Перше відчуття, що людина з екрану справді стоїть перед тобою.'
-      },
-      {
-        speaker: 'Сергій',
-        text: 'Ти справжня... Ти справді зараз тут.'
-      },
-      {
-        speaker: 'Марія',
-        text: 'І ти теж. Нарешті.'
-      }
     ]
   },
 
@@ -415,13 +365,16 @@ export const storyScenes: StoryScene[] = [
     id: 'first-days',
     title: 'Наша перша зустріч',
     place: 'Дні, які хотілося зупинити',
-    background: backgrounds[10],
+    background: backgrounds[2],
     music: null,
     characters: [
       { id: 'maria', position: 'right', animation: 'float' },
       { id: 'serhii', position: 'left', animation: 'breathe' }
     ],
     lines: [
+      {
+        text: 'Перші теплі обійми. Перші ніжні поцілунки. Перше відчуття, що людина з екрану справді стоїть перед тобою.'
+      },
       {
         text: 'Після першої зустрічі час ніби почав бігти швидше. Вони гуляли, розмовляли, сміялися й просто насолоджувалися тим, що нарешті можуть бути поруч.'
       },
@@ -445,7 +398,7 @@ export const storyScenes: StoryScene[] = [
     id: 'goodbye',
     title: 'Найважче слово',
     place: 'Перед розлукою',
-    background: backgrounds[11],
+    background: backgrounds[4],
     music: 'lirika',
     characters: [
       { id: 'maria', position: 'left', animation: 'sway' },
@@ -479,8 +432,8 @@ export const storyScenes: StoryScene[] = [
     id: 'second-chance',
     title: "Наступна зустріч",
     place: 'Дні, які хотілося зупинити',
-    background: backgrounds[12],
-    music: 'in-love',
+    background: backgrounds[6],
+    music: 'goodbye',
     characters: [
       { id: 'maria', position: 'left', animation: 'float' },
       { id: 'serhii', position: 'right', animation: 'pulse' }
@@ -512,8 +465,8 @@ export const storyScenes: StoryScene[] = [
     id: 'last-days',
     title: 'Не хочу, щоб закінчувалося',
     place: 'Останні дні разом',
-    background: backgrounds[13],
-    music: 'lirika',
+    background: backgrounds[5],
+    music: null,
     characters: [
       { id: 'maria', position: 'right', animation: 'pulse' },
       { id: 'serhii', position: 'left', animation: 'pulse' }
@@ -549,7 +502,7 @@ export const storyScenes: StoryScene[] = [
     id: 'farewell-again',
     title: 'До наступної зустрічі',
     place: 'Останні обійми',
-    background: backgrounds[14],
+    background: backgrounds[0],
     music: 'ending',
     characters: [
       { id: 'maria', position: 'left', animation: 'sway' },
@@ -583,8 +536,8 @@ export const storyScenes: StoryScene[] = [
     id: 'beginning',
     title: 'Це тільки початок',
     place: 'Нова сторінка',
-    background: backgrounds[15],
-    music: '',
+    background: backgrounds[0],
+    music: null,
     characters: [
       { id: 'maria', position: 'left', animation: 'pulse' },
       { id: 'serhii', position: 'right', animation: 'pulse' }

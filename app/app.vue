@@ -1,16 +1,41 @@
 <template>
-  <div class="min-h-90 bg-slate-950 text-white">
+  <div class="relative min-h-screen bg-slate-950 text-white">
     <NuxtRouteAnnouncer />
-
-    <main
-      class="relative min-h-90 cursor-pointer overflow-hidden select-none"
-      role="button"
-      tabindex="0"
-      aria-label="Продовжити історію"
+    <div v-if="showWelcomeDialog"
+      class="absolute z-60 min-w-full min-h-full top-0 left-0"
+      @click="acceptCongratulations"
+    >
+      <div class="absolute inset-0 z-70 flex items-center justify-center bg-slate-950/65 px-4 backdrop-blur-sm">
+        <section
+          class="animate-text-rise w-full max-w-xl rounded-lg border border-white/15 bg-slate-950/88 p-5 text-center shadow-2xl shadow-slate-950/50 sm:p-7"
+        >
+          <h2 class="mt-2 text-3xl font-semibold text-white sm:text-4xl">Зроблено з любов'ю для Марійки</h2>
+          <p class="mx-auto mt-4 max-w-md text-base leading-7 text-slate-100">Але перш ніж прочитаєш цю історію, я хочу привітати тебе з днем ​​народження.</p>
+          <button
+            class="mt-6 rounded-md bg-rose-200 px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-rose-950/25 transition hover:bg-rose-100"
+            type="button"
+            @click.stop="acceptCongratulations"
+          >
+            Прийняти вітання
+          </button>
+        </section>
+      </div>
+    </div>
+    <div class="absolute z-50 min-w-[30%] min-h-full top-0 left-0" 
+      @click="backwardStory"
+      @keydown.arrow-left.prevent="backwardStory" 
+    />
+    <div class="absolute z-50 min-w-[70%] min-h-full top-0 right-0"
       @click="handleScreenClick"
       @keydown.space.prevent="handleScreenClick"
       @keydown.enter.prevent="handleScreenClick"
-      @keydown.arrow-right.prevent="handleScreenClick"
+      @keydown.arrow-right.prevent="handleScreenClick" 
+    />
+    <main
+      class="relative min-h-100svh cursor-pointer overflow-hidden select-none"
+      role="button"
+      tabindex="0"
+      aria-label="Продовжити історію"
     >
       <div
         class="absolute inset-0 bg-cover bg-center transition-[background-image,transform] duration-700"
@@ -73,7 +98,7 @@
 
       <div
         v-if="showOpeningDialog"
-        class="absolute inset-0 z-40 flex items-center justify-center bg-slate-950/65 px-4 backdrop-blur-sm"
+        class="absolute inset-0 z-55 flex items-center justify-center bg-slate-950/65 px-4 backdrop-blur-sm"
       >
         <section
           class="animate-text-rise w-full max-w-xl rounded-lg border border-white/15 bg-slate-950/88 p-5 text-center shadow-2xl shadow-slate-950/50 sm:p-7"
@@ -100,7 +125,7 @@
 
       <div
         v-if="isEnd"
-        class="absolute inset-0 z-40 flex items-center justify-center bg-slate-950/65 px-4 backdrop-blur-sm"
+        class="absolute inset-0 z-55 flex items-center justify-center bg-slate-950/65 px-4 backdrop-blur-sm"
       >
         <section
           class="animate-text-rise w-full max-w-xl rounded-lg border border-white/15 bg-slate-950/88 p-5 text-center shadow-2xl shadow-slate-950/50 sm:p-7"
@@ -128,6 +153,7 @@ import type { Background, CharacterAnimation } from './models'
 
 const scenes = storyScenes
 const showOpeningDialog = ref(true)
+const showWelcomeDialog = ref(true)
 const currentSceneIndex = ref(0)
 const currentLineIndex = ref(0)
 const currentMusicId = ref<string | null>(null)
@@ -193,6 +219,11 @@ function restartNovel() {
   applyMusicCue(currentScene.value.music, true)
 }
 
+function acceptCongratulations() {
+  showWelcomeDialog.value = false
+  applyMusicCue(openingDialog.music, true)
+}
+
 function continueStory() {
   if (currentLineIndex.value < currentScene.value.lines.length - 1) {
     currentLineIndex.value += 1
@@ -202,6 +233,25 @@ function continueStory() {
   if (currentSceneIndex.value < scenes.length - 1) {
     currentSceneIndex.value += 1
     currentLineIndex.value = 0
+    return
+  }
+}
+
+function backwardStory() {
+  if (showOpeningDialog.value) {
+    startNovel()
+    return
+  }
+
+  if (currentLineIndex.value > 0) {
+    currentLineIndex.value -= 1
+    return
+  }
+
+  const scene = scenes[currentSceneIndex.value]
+  if (currentSceneIndex.value > 0 && scene !== undefined) {
+    currentSceneIndex.value -= 1
+    currentLineIndex.value = scene.lines.length - 1
     return
   }
 }
@@ -282,7 +332,7 @@ function animationClass(animation: CharacterAnimation) {
   return classes[animation]
 }
 
-function stopMusic() {
+async function stopMusic() {
   if (fileAudio) {
     fileAudio.pause()
     fileAudio.currentTime = 0

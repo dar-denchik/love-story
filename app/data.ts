@@ -401,8 +401,6 @@ export const storyScenes: StoryScene[] = [
     background: backgrounds[4],
     music: 'lirika',
     characters: [
-      { id: 'maria', position: 'left', animation: 'sway' },
-      { id: 'serhii', position: 'right', animation: 'breathe' }
     ],
     lines: [
       {
@@ -435,8 +433,6 @@ export const storyScenes: StoryScene[] = [
     background: backgrounds[6],
     music: 'goodbye',
     characters: [
-      { id: 'maria', position: 'left', animation: 'float' },
-      { id: 'serhii', position: 'right', animation: 'pulse' }
     ],
     lines: [
       {
@@ -468,8 +464,6 @@ export const storyScenes: StoryScene[] = [
     background: backgrounds[5],
     music: null,
     characters: [
-      { id: 'maria', position: 'right', animation: 'pulse' },
-      { id: 'serhii', position: 'left', animation: 'pulse' }
     ],
     lines: [
       {

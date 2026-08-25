@@ -206,7 +206,7 @@ const progress = computed(() => Math.round((completedBeats.value / totalBeats.va
 const sceneBackgroundStyle = computed(() => getBackgroundStyle(currentScene.value.background))
 
 watch(currentSceneIndex, async (newIndex, oldIndex) => {
-  applyMusicCue(currentScene.value.music)
+  await applyMusicCue(currentScene.value.music)
 
   if (newIndex === oldIndex) {
     return
@@ -220,10 +220,6 @@ watch(currentSceneIndex, async (newIndex, oldIndex) => {
   requestAnimationFrame(() => {
     backgroundVisible.value = true
   })
-})
-
-onMounted(() => {
-  applyMusicCue(openingDialog.music, true)
 })
 
 onBeforeUnmount(() => {
@@ -258,22 +254,22 @@ function handleScreenClick() {
   continueStory()
 }
 
-function startNovel() {
+async function startNovel() {
   stopMusic()
   showOpeningDialog.value = false
-  applyMusicCue(currentScene.value.music, true)
+  await applyMusicCue(currentScene.value.music, true)
 }
 
-function restartNovel() {
+async function restartNovel() {
   stopMusic()
   currentSceneIndex.value = 0
   currentLineIndex.value = 0
-  applyMusicCue(currentScene.value.music, true)
+  await applyMusicCue(currentScene.value.music, true)
 }
 
-function acceptCongratulations() {
+async function acceptCongratulations() {
   showWelcomeDialog.value = false
-  applyMusicCue(openingDialog.music, true)
+  await applyMusicCue(openingDialog.music, true)
 }
 
 function continueStory() {
@@ -387,8 +383,6 @@ function animationClass(animation: CharacterAnimation) {
 async function stopMusic() {
   if (fileAudio) {
     fileAudio.pause()
-    fileAudio.currentTime = 0
-    fileAudio = null
   }
 }
 </script>

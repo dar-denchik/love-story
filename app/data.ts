@@ -13,49 +13,49 @@ export const musicTracks: MusicTrack[] = [
   {
     id: 'blue',
     label: 'Song',
-    src: 'blue.mp3',
+    src: 'blue.m4a',
     volume: 0.70,
     start: 2
   },
   {
     id: 'ending',
     label: 'Ending',
-    src: 'ending.mp3',
+    src: 'ending.m4a',
     volume: 0.70,
     start: 0
   },
   {
     id: 'in-love',
     label: 'In Love',
-    src: 'in_love.mp3',
+    src: 'in_love.m4a',
     volume: 0.70,
     start: 0.1
   },
   {
     id: 'lirika',
     label: 'Lirika',
-    src: 'lirika.mp3',
+    src: 'lirika.m4a',
     volume: 0.70,
     start: 1
   },
   {
     id: 'white-roses',
     label: 'White roses',
-    src: 'white-roses.mp3',
+    src: 'white-roses.m4a',
     volume: 0.70,
     start: 0
   },
   {
     id: 'goodbye',
     label: 'Goodbye',
-    src: 'goodbye.mp3',
+    src: 'goodbye.m4a',
     volume: 0.70,
     start: 0.5
   },
   {
     id: 'start',
     label: 'Start',
-    src: 'start.mp3',
+    src: 'start.m4a',
     volume: 0.70,
     start: 0.5
   }
@@ -66,7 +66,7 @@ export const backgrounds: Background[] = [
     id: 'balcony',
     label: 'Вечірній балкон',
     kind: 'image',
-    value: 'images/birthday-balcony.png'
+    value: 'images/birthday-balcony.jpg'
   },
   {
     id: 'starlight',

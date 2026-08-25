@@ -42,18 +42,10 @@
       aria-label="Продовжити історію"
     >
       <falling-hearts />
-      <div class="absolute inset-0 overflow-hidden">
-        <div
-          class="absolute inset-0 bg-cover bg-center"
-          :style="previousSceneBackgroundStyle"
-        />
-
-        <div
-          class="absolute inset-0 bg-cover bg-center transition-opacity duration-700 ease-in-out"
-          :class="backgroundVisible ? 'opacity-100' : 'opacity-0'"
-          :style="sceneBackgroundStyle"
-        />
-      </div>
+      <div
+        class="absolute inset-0 bg-cover bg-center transition-opacity duration-700 ease-in-out"
+        :style="sceneBackgroundStyle"
+      />
       <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(244,114,182,.25),transparent_30%),radial-gradient(circle_at_80%_24%,rgba(45,212,191,.2),transparent_28%),linear-gradient(180deg,rgba(2,6,23,.1),rgba(2,6,23,.78))]" />
       <div class="pointer-events-none absolute inset-x-0 top-0 h-36 bg-linear-to-b from-slate-950/65 to-transparent" />
       <div class="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-linear-to-t from-slate-950/80 to-transparent" />
@@ -181,12 +173,6 @@ const currentScene = computed(() => {
   return scene
 })
 
-const previousBackground = ref<Background | undefined>(currentScene.value.background)
-const backgroundVisible = ref(true)
-
-const previousSceneBackgroundStyle = computed(() =>
-  getBackgroundStyle(previousBackground.value)
-)
 const activeLine = computed(() => currentScene.value.lines[currentLineIndex.value])
 const isEnd = computed(() => {
   return (
@@ -205,45 +191,13 @@ const completedBeats = computed(() => {
 const progress = computed(() => Math.round((completedBeats.value / totalBeats.value) * 100))
 const sceneBackgroundStyle = computed(() => getBackgroundStyle(currentScene.value.background))
 
-watch(currentSceneIndex, async (newIndex, oldIndex) => {
+watch(currentSceneIndex, async () => {
   await applyMusicCue(currentScene.value.music)
-
-  if (newIndex === oldIndex) {
-    return
-  }
-
-  previousBackground.value = getSceneByIndex(oldIndex)?.background
-  backgroundVisible.value = false
-
-  await preloadBackground(currentScene.value.background)
-
-  requestAnimationFrame(() => {
-    backgroundVisible.value = true
-  })
 })
 
 onBeforeUnmount(() => {
   stopMusic()
 })
-
-function getSceneByIndex(index: number) {
-  return scenes[index]
-}
-
-function preloadBackground(background: Background | undefined) {
-  if (!background || background.kind !== 'image') {
-    return Promise.resolve()
-  }
-
-  return new Promise<void>((resolve) => {
-    const image = new Image()
-
-    image.onload = () => resolve()
-    image.onerror = () => resolve()
-
-    image.src = background.value
-  })
-}
 
 function handleScreenClick() {
   if (showOpeningDialog.value) {

@@ -21,16 +21,20 @@
         </section>
       </div>
     </div>
-    <div class="absolute z-50 min-w-[30%] min-h-full top-0 left-0" 
+    <div class="absolute z-50 min-w-[30%] min-h-full top-0 left-0 text-5xl flex justify-start items-center pl-2" 
       @click="backwardStory"
       @keydown.arrow-left.prevent="backwardStory" 
-    />
-    <div class="absolute z-50 min-w-[70%] min-h-full top-0 right-0"
+    >
+    〈
+    </div>
+    <div class="absolute z-50 min-w-[70%] min-h-full top-0 right-0  text-5xl flex justify-end items-center pr-2"
       @click="handleScreenClick"
       @keydown.space.prevent="handleScreenClick"
       @keydown.enter.prevent="handleScreenClick"
       @keydown.arrow-right.prevent="handleScreenClick" 
-    />
+    >
+    〉
+    </div>
     <main
       class="relative min-h-full cursor-pointer overflow-hidden select-none"
       role="button"

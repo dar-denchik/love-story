@@ -185,7 +185,7 @@ export const storyScenes: StoryScene[] = [
     id: 'distance',
     title: 'Між довірою та страхом',
     place: 'Перші випробування',
-    background: backgrounds[1],
+    background: backgrounds[0],
     music: null,
     characters: [
       { id: 'maria', position: 'left', animation: 'pulse' },
@@ -235,7 +235,7 @@ export const storyScenes: StoryScene[] = [
     id: 'first-meeting-plan',
     title: 'А якщо зустрітися?',
     place: 'Перші плани',
-    background: backgrounds[1],
+    background: backgrounds[0],
     music: null,
     characters: [
       { id: 'maria', position: 'left', animation: 'sway' },
@@ -279,7 +279,7 @@ export const storyScenes: StoryScene[] = [
     id: 'journey',
     title: 'Дорога до тебе',
     place: 'Нічний автобус',
-    background: backgrounds[1],
+    background: backgrounds[0],
     music: 'white-roses',
     characters: [
       { id: 'maria', position: 'right', animation: 'breathe' },

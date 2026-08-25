@@ -9,6 +9,27 @@
   --animate-arrive-left: arrive-left 700ms cubic-bezier(.22, 1, .36, 1) both;
   --animate-arrive-right: arrive-right 700ms cubic-bezier(.22, 1, .36, 1) both;
   --animate-text-rise: text-rise 420ms ease-out both;
+  --animate-heart-fall: heart-fall linear infinite;
+
+  @keyframes heart-fall {
+    0% {
+      transform: translate3d(0, -10vh, 0) rotate(-45deg);
+      opacity: 0;
+    }
+
+    10% {
+      opacity: 0.9;
+    }
+
+    50% {
+      transform: translate3d(30px, 50vh, 0) rotate(10deg);
+    }
+
+    100% {
+      transform: translate3d(-30px, 115vh, 0) rotate(-20deg);
+      opacity: 0;
+    }
+  }
 }
 
 html {

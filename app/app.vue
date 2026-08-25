@@ -41,7 +41,7 @@
       tabindex="0"
       aria-label="Продовжити історію"
     >
-
+      <falling-hearts />
       <div class="absolute inset-0 overflow-hidden">
         <div
           class="absolute inset-0 bg-cover bg-center"
